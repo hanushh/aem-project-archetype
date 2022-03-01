@@ -14,7 +14,9 @@
     "prod": "webpack --config ./webpack.prod.js && clientlib --verbose",
     "start": "webpack-dev-server --open --config ./webpack.dev.js",
     "sync": "aemsync -d -p ../ui.apps/src/main/content",
-    "watch": "webpack-dev-server --config ./webpack.dev.js --env writeToDisk & chokidar -c \"clientlib\" ./dist & aemsync -w ../ui.apps/src/main/content"
+    "watch": "webpack-dev-server --config ./webpack.dev.js --env writeToDisk & chokidar -c \"clientlib\" ./dist & aemsync -w ../ui.apps/src/main/content",
+    "prepare": "cd ../../../../ && husky install src/main/archetype/ui.frontend.general/.husky",
+    "test": "echo 'r=test'"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
@@ -37,9 +39,12 @@
     "eslint-webpack-plugin": "^3.1.1",
     "glob-import-loader": "^1.2.0",
     "html-webpack-plugin": "^5.5.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.4",
     "mini-css-extract-plugin": "^2.4.5",
     "postcss": "^8.2.15",
     "postcss-loader": "^3.0.0",
+    "prettier": "2.5.1",
     "sass": "^1.45.0",
     "sass-loader": "^12.4.0",
     "source-map-loader": "^0.2.4",
@@ -57,5 +62,9 @@
   "browserslist": [
     "last 2 version",
     "> 1%"
-  ]
+  ],
+  "lint-staged": {
+    "**/*.{js,ts,tsx,jsx,scss}}": "eslint --cache --fix",
+    "**/*.{js,ts,jsx,tsx,scss,json,css,md}": "prettier --write"
+  }
 }
